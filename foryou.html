@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-container" id="stars"></div>
+
+    <main class="flashcard-container">
+        <div class="square-card" id="flashcard">
+            <div class="card-content">
+                <textarea id="cardText" placeholder="Escribe algo aquí..." readonly></textarea>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn-nav" id="prevBtn">Anterior</button>
+            <span id="cardNumber">1 / 10</span>
+            <button class="btn-nav" id="nextBtn">Siguiente</button>
+        </div>
+
+        <button class="btn-foryou" id="extraBtn" style="display:none; margin-top: 50px;">Dato Extra</button>
+
+        <section class="extra-section" id="extraSection">
+            <img src="fan_photo.jpg.jpeg.jpeg" alt="Foto especial" class="extra-img">
+            <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; max-width: 80%; color: white; margin-top: 15px;">"Si un día voy a la guerra, esta es la foto que llevaría"</p>
+        </section>
+    </main>
+
+    <script>
+        // Stars background
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Flashcards Logic
+        const messages = [
+            "Hola mi amor espero que no estes tan estresada por tus estudios en estos momentos durante la tarde me dedique a hacer este detalle para expresarte mi cariño y gratitud.",
+            "Durante estos dias he sido el hombre mas feliz del mundo gracias a vos.",
+            "Quien diria que entre tantas personas habidas y por haber en esa aplicacion de mierda encontraria a la mas tierna, buena y hermosa de todas.",
+            "Y quien diria que en la soledad donde estaba llegaria alguien que no esperaba pero que me alegro la vida para bien.",
+            "Resignado a no buscar mas nada de la mismisima nada saliste vos y pura y exclusivamente para bien.",
+            "No se si creeras en Dios como yo o en el universo o inclusive en el destino pero creo que si a ambos nos puso en el mismo camino casualidad no es.",
+            "Mas alla de lo fisico en el primer momento que te vi hace un par de dias senti algo que jamas me paso verdaderamente y lo senti hermoso.",
+            "Si bien tenes un hermoso cabello, sonrisa, nariz, ojos y cuerpo creo que tu mayor belleza y virtud esta adentro.",
+            "Primer beso, primer abrazo, primera noche y senti una calidez de otro planeta como si nada mas existise, estaba en otro mundo literalmente y me senti tan bien ese dia que un dia solo no basta.",
+            "Con vos me senti seguro, querido desde el primer momento e inclusive no te asustaste de mis payasadas y eso es lo que mas me gusto, que con vos puedo ser yo mismo y jamas pense enamorarme tan rapido de alguien pero puedo decir con franqueza que de vos lo estoy y quiero que esto tan lindo siga durante mucho tiempo, gracias a vos tengo una felicidad y energia increibles pero sobretodo me siento correspondido y amado por vos, sos lo mejor, gracias mi amor y con toda sinceridad te digo TE AMO."
+        ];
+
+        let currentIndex = 0;
+        const cardText = document.getElementById('cardText');
+        const cardNumber = document.getElementById('cardNumber');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const extraBtn = document.getElementById('extraBtn');
+        const extraSection = document.getElementById('extraSection');
+        const flashcard = document.getElementById('flashcard');
+
+        function updateCard() {
+            cardText.value = messages[currentIndex];
+            cardNumber.innerText = `${currentIndex + 1} / 10`;
+            
+            // Animation effect
+            flashcard.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                flashcard.style.transform = 'scale(1)';
+            }, 200);
+
+            if (currentIndex === messages.length - 1) {
+                extraBtn.style.display = 'block';
+            } else {
+                extraBtn.style.display = 'none';
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < messages.length - 1) {
+                currentIndex++;
+                updateCard();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCard();
+            }
+        });
+
+        extraBtn.addEventListener('click', () => {
+            extraSection.style.display = 'flex';
+            extraSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Initialize first card
+        updateCard();
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para una Fan de BTS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-container" style="display: flex; justify-content: center; align-items: center; background-color: black;">
+        <img src="bts_michael.jpg.jpeg" alt="BTS Background" style="max-width: 70%; max-height: 70%; object-fit: contain; border: 2px solid rgba(255,255,255,0.1); border-radius: 10px;">
+        <div id="stars" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+    </div>
+
+    <main class="hero">
+        <div class="title-container">
+            <h1>Hola, somos tus novios</h1>
+            <p class="subtitle">pero Michael en especial te quería decir algo...</p>
+        </div>
+
+        <a href="foryou.html" class="btn-foryou" style="position: relative; z-index: 999;">For you</a>
+    </main>
+
+    <footer>
+        <p style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Con cariño, Michael</p>
+    </footer>
+
+    <script>
+        // Create stars background
+        const starsContainer = document.getElementById('stars');
+        const starCount = 150;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>

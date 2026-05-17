@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --bts-purple: #6d4aff;
+    --bts-pink: #ff79c6;
+    --bts-black: #0b0b0b;
+    --bts-gold: #d4af37;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bts-black);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Background Animation */
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background-color: black;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: twinkle var(--duration) infinite ease-in-out;
+    z-index: 1;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+/* Page 1 Styles */
+.hero {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Change to space-between to push items to top/bottom */
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem; /* More padding top and bottom */
+    position: relative;
+    z-index: 5;
+}
+
+.title-container {
+    margin-top: 0.5rem;
+    animation: fadeInDown 1.5s ease-out;
+    z-index: 6;
+    background: transparent; /* Totalmente transparente */
+    padding: 10px;
+    border-radius: 0;
+    backdrop-filter: none; /* Sin distorsión/blur */
+    border: none;
+    max-width: 95%;
+}
+
+.title-container h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    background: linear-gradient(to right, #fff, var(--bts-purple), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: white;
+    opacity: 0.9;
+}
+
+.btn-foryou {
+    display: inline-block;
+    background: var(--bts-purple);
+    border: 2px solid white;
+    color: white;
+    padding: 0.8rem 3rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 2rem; /* Lo más abajo posible para ver tatuajes */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 100;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn-foryou:hover {
+    background: white;
+    color: var(--bts-purple);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    transform: translateY(-5px);
+}
+
+footer {
+    position: absolute;
+    bottom: 0.5rem; /* Muy pegado al borde inferior */
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    z-index: 10;
+}
+
+/* Page 2 Styles (Flashcards) */
+.flashcard-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.square-card {
+    width: 320px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--bts-purple);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    position: relative;
+    padding: 25px;
+}
+
+.square-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(109, 74, 255, 0.3);
+    border-color: white;
+}
+
+.card-content {
+    z-index: 10;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-content textarea {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem; /* Slightly smaller for long texts */
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    outline: none;
+    line-height: 1.3;
+    padding: 10px;
+    overflow-y: auto; /* Allow scrolling if text is very long */
+}
+
+/* Custom scrollbar for the textarea */
+.card-content textarea::-webkit-scrollbar {
+    width: 5px;
+}
+.card-content textarea::-webkit-scrollbar-thumb {
+    background: var(--bts-purple);
+    border-radius: 10px;
+}
+
+.nav-buttons {
+    margin-top: 100px;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-nav {
+    background: var(--glass);
+    border: 1px solid white;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-nav:hover {
+    background: white;
+    color: var(--bts-purple);
+}
+
+.extra-section {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.extra-img {
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Animations */
+/* Music Player UI */
+.music-player {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(109, 74, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 10px 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-player:hover {
+    background: rgba(109, 74, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.music-icon {
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
